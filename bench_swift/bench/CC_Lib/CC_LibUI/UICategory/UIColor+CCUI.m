@@ -9,6 +9,10 @@
 
 @implementation UIColor (CC)
 
++ (UIColor *)tinyLightGrayColor {
+    return RGB(242, 242, 242);
+}
+
 + (UIColor *)cc_hexA:(NSString *)hex alpha:(float)alpha {
     hex = [hex stringByReplacingOccurrencesOfString:@"#" withString:@""];
     hex = [hex stringByReplacingOccurrencesOfString:@"0x" withString:@""];

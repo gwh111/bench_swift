@@ -22,6 +22,7 @@ NSString *colorString = [NSString stringWithUTF8String:color]; \
 
 + (UIColor *)cc_hexA:(NSString *)hex alpha:(float)alpha;
 + (UIColor *)cc_rgbA:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
++ (UIColor *)tinyLightGrayColor;
 
 @end
 
