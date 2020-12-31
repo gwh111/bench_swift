@@ -11,26 +11,83 @@ import Foundation
 //This import is not friendly, so you can drag this file in your project.
 
 class bench: NSObject {
-    static let ui = bench()
+    //MARK:Store UIKit objects for display
+    static let ui = bench_ui()
     
+    //MARK:Store other objects
     static public func currentVC() -> UIViewController {
-        return ccs.currentVC()
+        ccs.currentVC()
     }
     
+    static public func currentTabBarC() -> UIViewController {
+        ccs.currentTabBarC()
+    }
+    
+    static public func database() -> CC_DataBaseStore {
+        ccs.dataBaseStore()
+    }
+    
+    //MARK:Function
     static public func pushViewController(vc:UIViewController) {
         ccs.pushViewController(vc)
     }
     
-    public func borderView() -> UIView {
-        let borderView = UIView()
-        borderView.frame = CGRect(x: RH(10), y: RH(10), width: WIDTH()-RH(20), height: RH(100))
-        borderView.layer.borderWidth = 1
-        borderView.layer.borderColor = UIColor.gray.cgColor
-        borderView.layer.cornerRadius = RH(4)
-        return borderView
+    static public func bundlePlist(path:String) -> NSDictionary {
+        if let plist = ccs.bundlePlist(withPath: path) as NSDictionary? {
+            return plist
+        }
+        return [:]
+    }
+    
+    static public func AESEncode(key:String, string:String) -> Data {
+        string.cc_convertToUTF8data()
+        if let data = string.cc_convertToUTF8data() {
+            if let result = CC_AES.encrypt(withKey: key, iv: "1", data: data) {
+                return result
+            }
+        }
+        return Data()
+    }
+    
+    static public func AESDecode(key:String, data:Data) -> String {
+        if let result = CC_AES.decrypt(withKey: key, iv: "1", data: data) as NSData? {
+            if let resultString = result.cc_convertToUTF8String() {
+                return resultString
+            }
+        }
+        return ""
     }
 }
 
+//MARK:Store UIKit objects
+class bench_ui: NSObject {
+    
+    public func borderView() -> UIView {
+        let view = UIView()
+        view.frame = CGRect(x: RH(10), y: RH(10), width: WIDTH()-RH(20), height: RH(100))
+        view.backgroundColor = UIColor.white
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
+//        view.layer.cornerRadius = RH(4)
+        return view
+    }
+    
+    public func borderButton() -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitle("大家", for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.titleLabel?.font = RF(12)
+        button.frame = CGRect(x: RH(10), y: RH(10), width: RH(80), height: RH(40))
+//        button.layer.cornerRadius = RH(4)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        return button
+    }
+}
+
+//MARK:Macro
 public func RGBA(_ red:Float, _ green:Float, _ blue:Float, _ alpha:Float) -> UIColor {
     return UIColor.cc_rgbA(red, green: green, blue: blue, alpha: alpha)
 }
