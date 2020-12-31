@@ -181,6 +181,7 @@
 		D8B15DEE2431CEB400AD8059 /* UIImage+CCUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B15DED2431CEB400AD8059 /* UIImage+CCUI.m */; };
 		D8B87F6F2386261F0007613A /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B87F6E2386261F0007613A /* NullSafe.m */; };
 		D8C72EE7259C5CB40060A4C2 /* bench.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C72EE6259C5CB40060A4C2 /* bench.swift */; };
+		D8C72F3C259C7D9E0060A4C2 /* UIViewController+bench.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C72F3A259C7D9E0060A4C2 /* UIViewController+bench.m */; };
 		D8CAAA1A23C1787000D30914 /* DateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CAAA1923C1787000D30914 /* DateTests.m */; };
 		D8D30B4723D19516007D310E /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D30B4623D19516007D310E /* NetworkTests.m */; };
 		D8D4CD79239F3D390041CC97 /* MXRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4CD77239F3D380041CC97 /* MXRotationManager.m */; };
@@ -571,6 +572,8 @@
 		D8B87F6E2386261F0007613A /* NullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		D8C72EE5259C5CB40060A4C2 /* bench_swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bench_swift-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8C72EE6259C5CB40060A4C2 /* bench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bench.swift; sourceTree = "<group>"; };
+		D8C72F3A259C7D9E0060A4C2 /* UIViewController+bench.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+bench.m"; sourceTree = "<group>"; };
+		D8C72F3B259C7D9E0060A4C2 /* UIViewController+bench.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+bench.h"; sourceTree = "<group>"; };
 		D8CAAA1923C1787000D30914 /* DateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateTests.m; sourceTree = "<group>"; };
 		D8D30B4623D19516007D310E /* NetworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkTests.m; sourceTree = "<group>"; };
 		D8D4CD77239F3D380041CC97 /* MXRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXRotationManager.m; sourceTree = "<group>"; };
@@ -807,6 +810,8 @@
 		D843B752230FE242003CC955 /* CC_LibUIControl */ = {
 			isa = PBXGroup;
 			children = (
+				D8C72F3B259C7D9E0060A4C2 /* UIViewController+bench.h */,
+				D8C72F3A259C7D9E0060A4C2 /* UIViewController+bench.m */,
 				D843B753230FE33E003CC955 /* CC_LibUIControl.h */,
 				D8A06E6C230F9999006BDF31 /* CC_CoreUI.h */,
 				D8A06E4F230F9999006BDF31 /* CC_CoreUI.m */,
@@ -1464,6 +1469,7 @@
 				D80C6B33238FD19400A1E0DB /* CC_Service.m in Sources */,
 				CC50D46623408FC70078D481 /* CC_DatabaseTool.m in Sources */,
 				1F9734292334E746002145A4 /* Test_LibWebImageController.m in Sources */,
+				D8C72F3C259C7D9E0060A4C2 /* UIViewController+bench.m in Sources */,
 				D8A06F14230F9999006BDF31 /* CC_Lib+UIControl.m in Sources */,
 				D8A06F4F230F9999006BDF31 /* CC_Timer.m in Sources */,
 				1F97342C23385D1D002145A4 /* Test_EncryptViewController.m in Sources */,

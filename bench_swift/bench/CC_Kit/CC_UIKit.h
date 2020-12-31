@@ -16,7 +16,10 @@
 
 #import "CC_LibUI.h"
 #import "CC_LibUIControl.h"
+
 #import "CC_LibWebView.h"
 #import "CC_LibWebImage.h"
+
+#import "UIViewController+bench.h"
 
 #endif /* CC_UIKit_h */

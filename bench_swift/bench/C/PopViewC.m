@@ -55,7 +55,7 @@
     .cc_addToView(displayView);
     close.top = 0;
     close.right = displayView.width;
-    [close cc_addTappedOnceDelay:.5 withBlock:^(CC_Button *btn) {
+    [close addTappedOnceDelay:.5 withBlock:^(CC_Button *btn) {
         [backgroundView removeFromSuperview];
     }];
     [displayView cc_addSubview:close];
@@ -80,7 +80,7 @@
     .cc_addToView(displayView);
     close.top = 0;
     close.right = displayView.width;
-    [close cc_addTappedOnceDelay:.5 withBlock:^(CC_Button *btn) {
+    [close addTappedOnceDelay:.5 withBlock:^(CC_Button *btn) {
         [backgroundView removeFromSuperview];
     }];
     [displayView cc_addSubview:close];

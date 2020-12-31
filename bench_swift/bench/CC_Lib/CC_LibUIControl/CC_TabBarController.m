@@ -8,6 +8,7 @@
 #import "CC_TabBarController.h"
 #import "UIColor+CCUI.h"
 #import "CC_CoreUI.h"
+#import "UIViewController+bench.h"
 
 #define CCTABBAR_SELECTED_Color RGBA(36, 151, 235, 1)
 #define CCTABBAR_NORMAL_Color   RGBA(167, 164, 164, 1)
@@ -147,7 +148,7 @@
     if (![vc isKindOfClass:CC_ViewController.class]) {
         CCLOG(@"use 'CC_ViewController'");
     }
-    vc.parent = self;
+//    vc.parent = self;
     UITabBarItem *item = [self addChildViewController:vc
                                                 title:title
                                                 image:image
@@ -256,7 +257,7 @@
     for (int i = 0; i < self.cc_classArray.count; i++) {
         NSString *title = self.cc_titleArray.count ? self.cc_titleArray[i] : nil;
         CC_ViewController *vc = [CC_Base.shared cc_init:self.cc_classArray[i]];
-        vc.parent = self;
+//        vc.parent = self;
         UITabBarItem *item = [self addChildViewController:vc
                                                     title:title
                                                     image:self.cc_imgNameArray[i]

@@ -9,6 +9,8 @@
 #import "CC_ViewController.h"
 #import "CC_View.h"
 #import "CC_NavigationController.h"
+#import "UIViewController+bench.h"
+#import "ccs.h"
 
 @interface CC_ViewController (){
 }
@@ -16,26 +18,23 @@
 @end
 
 @implementation CC_ViewController
-@synthesize cc_displayView,cc_controllers,cc_navigationBar,parent,cc_navigationBarHidden;
+@synthesize cc_displayView,cc_controllers,cc_navigationBar,cc_navigationBarHidden;
 // Auto property synthesis will not synthesize property 'view'; it will be implemented by its superclass, use @dynamic to acknowledge intention
 // 添加 @dynamic告诉编译器这个属性是动态的,动态的意思是等你编译的时候就知道了它只在本类合成;
 //@dynamic view;
 
-// Function used in controller
-- (void)cc_viewWillLoad {}
-
-- (void)super_cc_viewWillLoad {
-    self.view.backgroundColor = UIColor.whiteColor;
+- (void)setupOnView:(UIView *)view {
+    view.backgroundColor = UIColor.whiteColor;
     
     cc_displayView = [CC_Base.shared cc_init:CC_ScrollView.class];
-    cc_displayView.frame = self.view.frame;
-    [self.view addSubview:cc_displayView];
+    cc_displayView.frame = view.frame;
+    [view addSubview:cc_displayView];
     
     cc_controllers = [CC_Base.shared cc_init:NSMutableArray.class];
     
     cc_navigationBar = [CC_Base.shared cc_init:CC_NavigationBar.class];
     [cc_navigationBar updateConfig:CC_NavigationController.shared.cc_navigationBarConfig];
-    [self.view addSubview:cc_navigationBar];
+    [view addSubview:cc_navigationBar];
     
     [cc_navigationBar.backButton addTappedOnceDelay:.1 withBlock:^(CC_Button *btn) {
         [CC_NavigationController.shared cc_popViewController];
@@ -48,7 +47,7 @@
     cc_displayView.top = cc_navigationBarHidden? Y():cc_navigationBar.bottom;
     cc_displayView.height = cc_displayView.height - cc_navigationBar.bottom;
     
-    if ([parent isKindOfClass:UITabBarController.class]) {
+    if ([ccs.currentVC isKindOfClass:UITabBarController.class]||!ccs.currentVC) {
         cc_displayView.height = cc_displayView.height - CC_CoreUI.shared.uiTabBarHeight;
     } else {
         cc_displayView.height = cc_displayView.height - CC_CoreUI.shared.safeBottom;
@@ -183,8 +182,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self super_cc_viewWillLoad];
-    [self cc_viewWillLoad];
     [self super_cc_viewDidLoad];
     [self cc_viewDidLoad];
 }

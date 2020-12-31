@@ -36,7 +36,7 @@
     ccs.ui.closeButton
     .cc_top(RH(100))
     .cc_addToView(self);
-    [close cc_addTappedOnceDelay:0 withBlock:^(CC_Button *btn) {
+    [close addTappedOnceDelay:0 withBlock:^(CC_Button *btn) {
        
         [ccs dismissViewController];
     }];

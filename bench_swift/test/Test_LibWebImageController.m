@@ -125,7 +125,7 @@
         .cc_addToView(self.view)
         .cc_setTitleForState(@"清理",UIControlStateNormal)
         .cc_backgroundColor(UIColor.grayColor);
-        [btn cc_addTappedOnceDelay:0.2 withBlock:^(CC_Button *btn) {
+        [btn addTappedOnceDelay:0.2 withBlock:^(CC_Button *btn) {
     //        [self uploadImg];
             NSLog(@"%@",self.imageV);
             [ccs clearAllWebImageCache:^{
@@ -142,7 +142,7 @@
         .cc_addToView(self.view)
         .cc_setTitleForState(@"添加",UIControlStateNormal)
         .cc_backgroundColor(UIColor.yellowColor);
-        [btnAdd cc_addTappedOnceDelay:0.2 withBlock:^(CC_Button *btn) {
+        [btnAdd addTappedOnceDelay:0.2 withBlock:^(CC_Button *btn) {
             [sv cc_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556024562532&di=bdb079286990b0ca11f4f0a3d26d2149&imgtype=0&src=http%3A%2F%2Fimg.alicdn.com%2Fimgextra%2Fi3%2F2894246297%2FTB2KYjuuYXlpuFjy1zbXXb_qpXa_%2521%25212894246297-1-headline_editor.gif"] placeholderImage:nil processBlock:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                 CCLOG(@"%ld---%ld", (long)receivedSize, (long)expectedSize);
             } completed:^(UIImage * _Nullable image, NSError * _Nullable error, BOOL finished) {

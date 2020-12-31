@@ -16,7 +16,7 @@
 
 @interface CC_ViewController : UIViewController
 
-@property (nonatomic, strong) id parent;
+//@property (nonatomic, strong) id parent;
 @property (nonatomic, assign) BOOL cc_navigationBarHidden;
 @property (nonatomic, retain) CC_ScrollView *cc_displayView;
 @property (nonatomic, retain) NSMutableArray *cc_controllers;
@@ -24,13 +24,13 @@
 
 // Configuration function, adds configuration to this function
 // 配置函数 在此函数中添加配置
-- (void)cc_viewWillLoad;
 - (void)cc_registerController:(CC_Controller *)controller;
 // 居中标题
 @property (nonatomic,retain) NSString *cc_title;
 
-// Function used in controller
-// 功能函数 在控制器使用
+// set initView
+- (void)setupOnView:(UIView *)view;
+
 - (void)cc_addSubview:(id)view;
 - (CC_View *)cc_viewWithName:(NSString *)name;
 - (void)cc_removeViewWithName:(NSString *)name;

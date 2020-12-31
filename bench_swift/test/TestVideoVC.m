@@ -162,7 +162,7 @@
     .cc_frame(100, 500, 100,100)
     .cc_backgroundColor(UIColor.orangeColor)
     .cc_addToView(self);
-    [button cc_addTappedOnceDelay:.1 withBlock:^(CC_Button *btn) {
+    [button addTappedOnceDelay:.1 withBlock:^(CC_Button *btn) {
 
 //        self.playerVC.player.muted = YES;
 //        [self.playerVC.player play];

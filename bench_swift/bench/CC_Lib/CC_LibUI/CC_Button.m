@@ -62,16 +62,10 @@
 @implementation CC_Button (CCActions)
 
 - (void)addTappedOnceDelay:(float)time withBlock:(void (^)(CC_Button *btn))block {
-    [self cc_addTappedOnceDelay:time withBlock:block];
+    [self addTappedOnceDelay:time withBlock:block forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)cc_addTappedOnceDelay:(float)time
-                    withBlock:(void (^)(CC_Button *btn))block {
-    
-    [self cc_addTappedOnceDelay:time withBlock:block forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)cc_addTappedOnceDelay:(float)time
+- (void)addTappedOnceDelay:(float)time
                     withBlock:(void (^)(CC_Button *btn))block
              forControlEvents:(UIControlEvents)controlEvents {
     
@@ -80,6 +74,10 @@
     [self addTarget:self
              action:@selector(_cc_tappedDelayMethod:)
    forControlEvents:controlEvents];
+}
+
+- (void)addTappedOnceWithBlock:(void (^)(CC_Button *btn))block {
+    [self addTappedOnceDelay:0.5 withBlock:block];
 }
 
 - (void)_cc_tappedDelayMethod:(CC_Button *)button{

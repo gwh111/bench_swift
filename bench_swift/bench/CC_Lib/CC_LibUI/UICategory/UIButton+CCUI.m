@@ -7,8 +7,68 @@
 //
 
 #import "UIButton+CCUI.h"
+#import "CC_Runtime.h"
 
 @implementation UIButton (CCUI)
+
+- (void)setTappedBlock:(void (^)(UIButton *))tappedBlock {
+    [CC_Runtime cc_setObject:self key:@selector(tappedBlock) value:tappedBlock];
+}
+
+- (void (^)(UIButton *))tappedBlock {
+    return [CC_Runtime cc_getObject:self key:@selector(tappedBlock)];
+}
+
+- (void)setFreezingTime:(float)freezingTime {
+    [CC_Runtime cc_setObject:self key:@selector(freezingTime) value:@(freezingTime)];
+}
+
+- (float)freezingTime {
+    return [[CC_Runtime cc_getObject:self key:@selector(freezingTime)]floatValue];
+}
+
+- (void)addTappedOnceDelay:(float)time withBlock:(void (^)(UIButton *btn))block {
+    [self addTappedOnceDelay:time withBlock:block forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addTappedOnceDelay:(float)time
+                    withBlock:(void (^)(UIButton *btn))block
+             forControlEvents:(UIControlEvents)controlEvents {
+    
+    self.tappedBlock = block;
+    self.freezingTime = time;
+    [self addTarget:self
+             action:@selector(_cc_tappedDelayMethod:)
+   forControlEvents:controlEvents];
+}
+
+- (void)addTappedOnceWithBlock:(void (^)(UIButton *btn))block {
+    [self addTappedOnceDelay:0.5 withBlock:block];
+}
+
+- (void)_cc_tappedDelayMethod:(UIButton *)button{
+    !self.tappedBlock ? : self.tappedBlock(self);
+    self.userInteractionEnabled = NO;
+    
+    UIImage *disableBgImg = [self backgroundImageForState:UIControlStateDisabled];
+    UIImage *normalBgImg = [self backgroundImageForState:UIControlStateNormal];
+
+    if(disableBgImg) {
+        self.cc_setBackgroundImageForState(disableBgImg,UIControlStateNormal);
+    }
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.freezingTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.userInteractionEnabled = YES;
+        
+        if(disableBgImg) {
+            self.cc_setBackgroundImageForState(disableBgImg,UIControlStateDisabled);
+        }
+        
+        if (normalBgImg) {
+            self.cc_setBackgroundImageForState(normalBgImg,UIControlStateNormal);
+        }
+    });
+}
 
 - (UIButton *(^)(NSString *))cc_setNormalTitle {
     return ^(NSString *_) { return self.cc_setTitleForState(_,UIControlStateNormal); };

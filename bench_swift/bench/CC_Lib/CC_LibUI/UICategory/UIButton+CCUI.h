@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (CCUI)
 
+- (void)addTappedOnceWithBlock:(void (^)(UIButton *btn))block;
+
 // MARK: - Title
 
 /// Sets the title to use for the normal state.
