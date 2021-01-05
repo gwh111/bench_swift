@@ -27,6 +27,10 @@ class bench: NSObject {
         ccs.dataBaseStore()
     }
     
+    static public func timer() -> CC_Timer {
+        ccs.timer()
+    }
+    
     //MARK:Function
     static public func pushViewController(vc:UIViewController) {
         ccs.pushViewController(vc)
@@ -96,12 +100,24 @@ public func RGB(_ red:Float, _ green:Float, _ blue:Float) -> UIColor {
     return UIColor.cc_rgbA(red, green: green, blue: blue, alpha: 1)
 }
 
+public func HEXA(_ hex:String, _ alpha:Float) -> UIColor {
+    return UIColor.cc_hexA(hex, alpha: alpha)
+}
+
+public func HEX(_ hex:String) -> UIColor {
+    return UIColor.cc_hexA(hex, alpha: 1)
+}
+
 public func RH(_ width:CGFloat) -> CGFloat {
     return CGFloat(ccs.coreUI()!.relativeHeight(Float(width)))
 }
 
 public func RF(_ size:CGFloat) -> UIFont {
     return ccs.coreUI()!.relativeFont(Float(size))
+}
+
+public func BRF(_ size:CGFloat) -> UIFont {
+    return ccs.coreUI()!.relativeFont("Helvetica-Bold", fontSize: Float(size))
 }
 
 public func WIDTH() -> CGFloat {
