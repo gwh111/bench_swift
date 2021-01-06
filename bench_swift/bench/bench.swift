@@ -43,6 +43,17 @@ class bench: NSObject {
         return [:]
     }
     
+    static public func getUserDefault(key:String) -> String {
+        if let value = ccs.getDefault(key) as? String {
+            return value
+        }
+        return ""
+    }
+    
+    static public func saveUserDefault(key:String,value:String) {
+        ccs.saveDefaultKey(key, value: value)
+    }
+    
     static public func AESEncode(key:String, string:String) -> Data {
         string.cc_convertToUTF8data()
         if let data = string.cc_convertToUTF8data() {
@@ -83,7 +94,7 @@ class bench_ui: NSObject {
         button.setTitle("大家", for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.cgColor
-        button.titleLabel?.font = RF(12)
+        button.titleLabel?.font = RF(14)
         button.frame = CGRect(x: RH(10), y: RH(10), width: RH(80), height: RH(40))
 //        button.layer.cornerRadius = RH(4)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
