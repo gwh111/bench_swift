@@ -54,6 +54,10 @@ class bench: NSObject {
         ccs.saveDefaultKey(key, value: value)
     }
     
+    static public func showNotice(_ content:String) {
+        ccs.showNotice(content)
+    }
+    
     static public func AESEncode(key:String, string:String) -> Data {
         string.cc_convertToUTF8data()
         if let data = string.cc_convertToUTF8data() {
@@ -137,4 +141,8 @@ public func WIDTH() -> CGFloat {
 
 public func HEIGHT() -> CGFloat {
     return CGFloat(ccs.coreUI()!.height())
+}
+
+public func SAFEBOTTOM() -> CGFloat {
+    return CGFloat(ccs.safeBottom())
 }

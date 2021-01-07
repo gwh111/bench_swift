@@ -10,6 +10,7 @@
 #import "CC_DatabaseTool.h"
 #import "CC_Database.h"
 #import "CC_BundleStore.h"
+#import "ccs.h"
 
 static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey;
 
@@ -66,7 +67,6 @@ static const void * const kDispatchQueueSpecificKey = &kDispatchQueueSpecificKey
 - (BOOL)insert:(id)modelObject
      tableName:(NSString *)tableName {
     if (!modelObject) return NO;
-    
     return [self inserts:@[modelObject] tableName:tableName];
 }
 

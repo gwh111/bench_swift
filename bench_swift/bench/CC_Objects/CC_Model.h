@@ -10,7 +10,8 @@
 
 @interface CC_Model : CC_Object
 
-@property (nonatomic,retain) NSDictionary *cc_modelDictionary;
+@property (nonatomic,retain) NSDictionary *jsonDictionary;
+@property (nonatomic,retain) NSString *jsonString;
 
 + (instancetype)cc_modelWithDictionary:(NSDictionary *)dic;
 

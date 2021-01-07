@@ -15,7 +15,6 @@
 @end
 
 @implementation CC_Model
-@synthesize cc_modelDictionary;
 
 + (instancetype)cc_modelWithDictionary:(NSDictionary *)dic {
     id model = self.class.new;
@@ -26,12 +25,12 @@
 - (void)cc_update{}
 
 - (void)cc_setProperty:(NSDictionary *)dic {
-    cc_modelDictionary = dic;
+    _jsonDictionary = dic;
     [self setClassKVDic:dic modelKVDic:nil];
 }
 
 - (void)cc_setProperty:(NSDictionary *)dic modelKVDic:(NSDictionary *)modelKVDic {
-    cc_modelDictionary = dic;
+    _jsonDictionary = dic;
     [self setClassKVDic:dic modelKVDic:modelKVDic];
 }
 
