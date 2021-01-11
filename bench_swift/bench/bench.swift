@@ -91,6 +91,15 @@ class bench_ui: NSObject {
         return view
     }
     
+    public func blackTitleButton() -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = RF(14)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        return button
+    }
+    
     public func borderButton() -> UIButton {
         let button = UIButton()
         button.backgroundColor = UIColor.white
@@ -100,7 +109,6 @@ class bench_ui: NSObject {
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.titleLabel?.font = RF(14)
         button.frame = CGRect(x: RH(10), y: RH(10), width: RH(80), height: RH(40))
-//        button.layer.cornerRadius = RH(4)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         return button
     }
