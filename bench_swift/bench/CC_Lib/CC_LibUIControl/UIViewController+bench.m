@@ -46,6 +46,10 @@
     return self.controller.cc_displayView;
 }
 
+- (void)adaptHeight {
+    [self.controller cc_adaptUI];
+}
+
 - (CC_NavigationBar *)navigationBar {
     return self.controller.cc_navigationBar;
 }

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // config
 - (void)setupController;
+- (void)adaptHeight;
 
 @end
 

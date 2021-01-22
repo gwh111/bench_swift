@@ -449,7 +449,7 @@ typedef void (^CCAssociatedTapBlock)(UIView *view);
 }
 
 - (void)addTappedOnceWithBlock:(void (^)(UIView *))block {
-    [self cc_tappedInterval:0.5 withBlock:block];
+    [self cc_tappedInterval:0.1 withBlock:block];
 }
 
 - (void)tappedInterval:(NSTimeInterval)interval withBlock:(void (^)(id))block {

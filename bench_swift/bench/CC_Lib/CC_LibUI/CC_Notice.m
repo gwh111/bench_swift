@@ -61,7 +61,7 @@
     
     label.width = WIDTH() - RH(40);
     [label sizeToFit];
-    label.bottom = HEIGHT()/2 + [CC_Notice shared].cc_yOffset;
+    label.bottom = showV.height/2 + [CC_Notice shared].cc_yOffset;
     label.left = WIDTH()/2-label.width/2;
     
     //adjust
