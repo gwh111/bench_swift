@@ -24,6 +24,9 @@ NSString *colorString = [NSString stringWithUTF8String:color]; \
 + (UIColor *)cc_rgbA:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
 + (UIColor *)tinyLightGrayColor;
 
++ (UIColor *)lightRed;
++ (UIColor *)lightBlue;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,7 +19,7 @@ class bench: NSObject {
         ccs.currentVC()
     }
     
-    static public func currentTabBarC() -> UIViewController {
+    static public func currentTabBarC() -> UITabBarController {
         ccs.currentTabBarC()
     }
     
@@ -31,9 +31,34 @@ class bench: NSObject {
         ccs.timer()
     }
     
+    static public func tool() -> CC_Tool {
+        ccs.tool()
+    }
+    
+    static public func today(block: @escaping (_ date:NSDate) -> Void) {
+        
+        ccs.httpTask()?.get("https://www.baidu.com/", params: nil, model: nil, finish: { (result, model) in
+            if let date = model?.responseDate as NSDate? {
+                print(date)
+                print(date.cc_year)
+                print(date.cc_month)
+                print(date.cc_day)
+                block(date)
+            }
+        })
+    }
+    
     //MARK:Function
     static public func pushViewController(vc:UIViewController) {
         ccs.pushViewController(vc)
+    }
+    
+    static public func pushWebViewController(URL:String) {
+        ccs.pushWebViewController(withUrl: URL)
+    }
+    
+    static public func popViewController() {
+        ccs.popViewController()
     }
     
     static public func bundlePlist(path:String) -> NSDictionary {
@@ -43,19 +68,38 @@ class bench: NSObject {
         return [:]
     }
     
-    static public func getUserDefault(key:String) -> String {
-        if let value = ccs.getDefault(key) as? String {
+    static public func getUserDefault(key:String) -> Any {
+        if let value = ccs.getDefault(key) {
             return value
         }
         return ""
     }
     
-    static public func saveUserDefault(key:String,value:String) {
+    static public func setUserDefault(key:String,value:Any) {
         ccs.saveDefaultKey(key, value: value)
+    }
+    
+    static public func getKeychainValue(key:String) -> Any {
+        if let value = ccs.keychainValue(forKey: key) {
+            return value
+        }
+        return ""
+    }
+    
+    static public func setKeychainValue(key:String,value:String) {
+        ccs.saveKeychainKey(key, value: value)
     }
     
     static public func showNotice(_ content:String) {
         ccs.showNotice(content)
+    }
+    
+    static public func showNotice(_ content:String, view:UIView) {
+        ccs.showNotice(content, at: view)
+    }
+    
+    static public func alert() -> CC_Alert {
+        ccs.alert()
     }
     
     static public func AESEncode(key:String, string:String) -> Data {
@@ -81,6 +125,13 @@ class bench: NSObject {
 //MARK:Store UIKit objects
 class bench_ui: NSObject {
     
+    public func textLabel() -> UILabel {
+        let label = UILabel()
+        label.font = RF(14)
+        label.textColor = UIColor.black
+        return label
+    }
+    
     public func borderView() -> UIView {
         let view = UIView()
         view.frame = CGRect(x: RH(10), y: RH(10), width: WIDTH()-RH(20), height: RH(100))
@@ -93,7 +144,7 @@ class bench_ui: NSObject {
     
     public func blackTitleButton() -> UIButton {
         let button = UIButton()
-        button.backgroundColor = UIColor.white
+        button.backgroundColor = UIColor.clear
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = RF(14)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -111,6 +162,13 @@ class bench_ui: NSObject {
         button.frame = CGRect(x: RH(10), y: RH(10), width: RH(80), height: RH(40))
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         return button
+    }
+    
+    public func normalTextField() -> UITextField {
+        let textField = UITextField()
+        textField.font = RF(14)
+        textField.backgroundColor = UIColor.tinyLightGray()
+        return textField
     }
 }
 
@@ -144,11 +202,21 @@ public func BRF(_ size:CGFloat) -> UIFont {
 }
 
 public func WIDTH() -> CGFloat {
-    return CGFloat(ccs.coreUI()!.width())
+    let width = CGFloat(ccs.coreUI()!.width())
+    let height = CGFloat(ccs.coreUI()!.height())
+    if width > height {
+        return height
+    }
+    return width
 }
 
 public func HEIGHT() -> CGFloat {
-    return CGFloat(ccs.coreUI()!.height())
+    let width = CGFloat(ccs.coreUI()!.width())
+    let height = CGFloat(ccs.coreUI()!.height())
+    if width < height {
+        return height
+    }
+    return width
 }
 
 public func SAFEBOTTOM() -> CGFloat {

@@ -6,8 +6,18 @@
 //
 
 #import "UIColor+CCUI.h"
+#import "ccs.h"
 
 @implementation UIColor (CC)
+
+
++ (UIColor *)lightRed {
+    return COLOR_LIGHT_RED;
+}
+
++ (UIColor *)lightBlue {
+    return COLOR_LIGHT_BLUE;
+}
 
 + (UIColor *)tinyLightGrayColor {
     return RGB(242, 242, 242);
